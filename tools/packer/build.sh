@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOZIP=false
-DODELETE=false
+DODELETE=true
 HASVERSION=false
 
 WORSPACEVERSION="integration"
@@ -19,7 +19,7 @@ while getopts "v:w:zdh" opt; do
 			DOZIP=true
 		;;
 		d)
-			DODELETE=true
+			DODELETE=false
 		;;
 		w)
 			WORSPACEVERSION=$OPTARG
@@ -38,7 +38,7 @@ while getopts "v:w:zdh" opt; do
 			echo "      ${bold}-z${normal}"
 			echo "         Create zip file."
 			echo "      ${bold}-d${normal}"
-			echo "         Delete fetched data after finishing all jobs."
+			echo "         Do not delete fetched data after finishing all jobs."
 			echo "      ${bold}-h${normal}"
 			echo "         This help."
 			echo ""

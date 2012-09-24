@@ -2,7 +2,7 @@
 
 DOJS=false
 DOCSS=false
-DODELETE=false
+DODELETE=true
 
 bold=`tput bold`
 normal=`tput sgr0`
@@ -16,7 +16,7 @@ while getopts "jcdh" opt; do
 			DOCSS=true
 		;;
 		d)
-			DODELETE=true
+			DODELETE=false
 		;;
 		h)
 			echo ""
@@ -28,7 +28,7 @@ while getopts "jcdh" opt; do
 			echo "      ${bold}-c${normal}"
 			echo "         Fetch and merge CSS files."
 			echo "      ${bold}-d${normal}"
-			echo "         Delete fetched data after finishing all jobs."
+			echo "         Do not delete fetched data after finishing all jobs."
 			echo "      ${bold}-h${normal}"
 			echo "         This help."
 			echo ""
@@ -54,12 +54,14 @@ fi
 if [ $DOJS == true ]; then
 	echo Merge JS files
 	cat ../../../../symphony/assets/js/* > all.js
+	cp all.js ../../../../symphony/assets/js/all.js
 fi
 
 
 if [ $DOCSS == true ]; then
 	echo Merge CSS files
 	cat ../../../../symphony/assets/css/* > all.css
+	cp all.css ../../../../symphony/assets/css/all.css
 fi
 
 
