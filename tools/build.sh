@@ -25,18 +25,23 @@ while getopts "v:w:zdh" opt; do
 			WORSPACEVERSION=$OPTARG
 		;;
 		h)
-			echo "Symphony builder options"
 			echo ""
-			echo " ${bold}-v${normal} version"
-			echo "    Define Symphony version to be fetched. Must be a valid Git ref."
-			echo " ${bold}-w${normal} version"
-			echo "    Define workspace version to be fetched. Must be a valid Git ref, defaults to integration."
-			echo " ${bold}-z${normal}"
-			echo "    Create zip file."
-			echo " ${bold}-d${normal}"
-			echo "    Delete fetched data after finishing all jobs."
-			echo " ${bold}-h${normal}"
-			echo "    This help."
+			echo "  Symphony builder options"
+			echo ""
+			echo "    Required arguments"
+			echo "      ${bold}-v${normal} version"
+			echo "         Define Symphony version to be fetched. Must be a valid Git ref."
+			echo ""
+			echo "    Optional arguments"
+			echo "      ${bold}-w${normal} version"
+			echo "         Define workspace version to be fetched. Must be a valid Git ref, defaults to integration."
+			echo "      ${bold}-z${normal}"
+			echo "         Create zip file."
+			echo "      ${bold}-d${normal}"
+			echo "         Delete fetched data after finishing all jobs."
+			echo "      ${bold}-h${normal}"
+			echo "         This help."
+			echo ""
 			exit 0
 		;;
 		\?)
