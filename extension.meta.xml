@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="coredevkit" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Core Devkit</name>
+	<description>A toolkit for Symphony core development.</description>
+	<repo type="github">https://github.com/nils-werner/coredevkit</repo>
+	<types>
+		<type>Workflow</type>
+	</types>
+	<authors>
+		<author>
+			<name github="nils-werner" symphony="phoque">Nils Werner</name>
+			<website>http://www.symphony-cms.com</website>
+		</author>
+	</authors>
+	<releases>
+		<release version="1.0" date="2012-09-24" min="2.3">
+			- Initial version
+		</release>
+	</releases>
+</extension>
