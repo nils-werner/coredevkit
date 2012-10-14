@@ -2,18 +2,18 @@
 
 DOZIP=false
 DODELETE=true
-HASVERSION=false
+HASSYMPHONYVERSION=false
 
 WORSPACEVERSION="integration"
 
 bold=`tput bold`
 normal=`tput sgr0`
 
-while getopts "v:w:zdh" opt; do
+while getopts "s:w:zdh" opt; do
 	case $opt in
-		v)
-			VERSION=$OPTARG
-			HASVERSION=true
+		s)
+			SYMPHONYVERSION=$OPTARG
+			HASSYMPHONYVERSION=true
 		;;
 		z)
 			DOZIP=true
@@ -29,7 +29,7 @@ while getopts "v:w:zdh" opt; do
 			echo "  Symphony builder options"
 			echo ""
 			echo "    Required arguments"
-			echo "      ${bold}-v${normal} version"
+			echo "      ${bold}-s${normal} version"
 			echo "         Define Symphony version to be fetched. Must be a valid Git ref."
 			echo ""
 			echo "    Optional arguments"
@@ -55,17 +55,17 @@ while getopts "v:w:zdh" opt; do
 	esac
 done
 
-if [ $HASVERSION == false ]; then
+if [ $HASSYMPHONYVERSION == false ]; then
 	echo "Option ${bold}-v${normal} is required. See ${bold}-h${normal} for all options." >&2
 	exit 1
 fi
 
 echo Clone repository
-git clone git://github.com/symphonycms/symphony-2.git symphony-$VERSION
+git clone git://github.com/symphonycms/symphony-2.git symphony-$SYMPHONYVERSION
 
-echo Checkout desired version $VERSION
-cd symphony-$VERSION
-git checkout $VERSION
+echo Checkout desired version $SYMPHONYVERSION
+cd symphony-$SYMPHONYVERSION
+git checkout $SYMPHONYVERSION
 
 echo Initialize submodules
 git submodule update --init
@@ -87,10 +87,10 @@ cd ../
 
 if [ $DOZIP == true ]; then
 	echo Zip it
-	zip -r symphony$VERSION.zip symphony-$VERSION
+	zip -r symphony$SYMPHONYVERSION.zip symphony-$SYMPHONYVERSION
 fi
 
 if [ $DODELETE == true ]; then
 	echo Delete folder
-	rm -rf symphony-$VERSION/
+	rm -rf symphony-$SYMPHONYVERSION/
 fi
