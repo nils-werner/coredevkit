@@ -4,7 +4,7 @@ A toolkit for Symphony core development.
 
 ## Features
 
- - `tools/build.sh` a buildscript for generating ready-for-download .zip archives of the default installation
+ - `tools/packer/build.sh` a buildscript for generating ready-for-download .zip archives of the default installation
 
 ## Planned features
 
