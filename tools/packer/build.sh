@@ -78,7 +78,7 @@ fi
 echo "Git: cloning Symphony repository"  1>&3 2>&4
 git clone git://github.com/symphonycms/symphony-2.git symphony-$SYMPHONYVERSION
 
-echo "Git: checking out desired Symphony version $SYMPHONYVERSION" 1>&3 2>&4
+echo "Git: checking out Symphony version ${bold}$SYMPHONYVERSION${normal}" 1>&3 2>&4
 cd symphony-$SYMPHONYVERSION
 git checkout $SYMPHONYVERSION
 
@@ -88,7 +88,7 @@ git submodule update --init
 echo "Git: cloning Workspace" 1>&3 2>&4
 git clone git://github.com/symphonycms/workspace.git
 
-echo "Git: checking out desired workspace version $WORSPACEVERSION" 1>&3 2>&4
+echo "Git: checking out workspace version ${bold}$WORSPACEVERSION${normal}" 1>&3 2>&4
 cd workspace
 git checkout $WORSPACEVERSION
 cd ../
@@ -101,7 +101,7 @@ done
 cd ../
 
 if [ $DOZIP == true ]; then
-	echo "Zip: creating archive" 1>&3 2>&4
+	echo "Zip: creating archive ${bold}symphony$SYMPHONYVERSION.zip${normal}" 1>&3 2>&4
 	zip -r symphony$SYMPHONYVERSION.zip symphony-$SYMPHONYVERSION
 fi
 
