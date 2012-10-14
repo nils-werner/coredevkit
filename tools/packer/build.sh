@@ -4,7 +4,7 @@ DOZIP=false
 DODELETE=true
 DOVERBOSE=false
 HASSYMPHONYVERSION=false
-WORSPACEVERSION="integration"
+WORKSPACEVERSION="integration"
 
 exec 3>&1
 exec 4>&2
@@ -28,7 +28,7 @@ while getopts "s:w:vzdh" opt; do
 			DODELETE=false
 		;;
 		w)
-			WORSPACEVERSION=$OPTARG
+			WORKSPACEVERSION=$OPTARG
 		;;
 		h)
 			echo ""
@@ -88,9 +88,9 @@ git submodule update --init
 echo "Git: cloning Workspace" 1>&3 2>&4
 git clone git://github.com/symphonycms/workspace.git
 
-echo "Git: checking out workspace version ${bold}$WORSPACEVERSION${normal}" 1>&3 2>&4
+echo "Git: checking out workspace version ${bold}$WORKSPACEVERSION${normal}" 1>&3 2>&4
 cd workspace
-git checkout $WORSPACEVERSION
+git checkout $WORKSPACEVERSION
 cd ../
 
 echo "Bash: removing Git cruft" 1>&3 2>&4
