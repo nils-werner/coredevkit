@@ -2,18 +2,24 @@
 
 DOZIP=false
 DODELETE=true
+DOVERBOSE=false
 HASSYMPHONYVERSION=false
-
 WORSPACEVERSION="integration"
+
+exec 3>&1
+exec 4>&2
 
 bold=`tput bold`
 normal=`tput sgr0`
 
-while getopts "s:w:zdh" opt; do
+while getopts "s:w:vzdh" opt; do
 	case $opt in
 		s)
 			SYMPHONYVERSION=$OPTARG
 			HASSYMPHONYVERSION=true
+		;;
+		v)
+			DOVERBOSE=true
 		;;
 		z)
 			DOZIP=true
@@ -37,6 +43,8 @@ while getopts "s:w:zdh" opt; do
 			echo "         Define workspace version to be fetched. Must be a valid Git ref, defaults to integration."
 			echo "      ${bold}-z${normal}"
 			echo "         Create zip file."
+			echo "      ${bold}-v${normal}"
+			echo "         Verbose output"
 			echo "      ${bold}-d${normal}"
 			echo "         Do not delete fetched data after finishing all jobs."
 			echo "      ${bold}-h${normal}"
@@ -60,25 +68,32 @@ if [ $HASSYMPHONYVERSION == false ]; then
 	exit 1
 fi
 
-echo Clone repository
+echo "Building Symphony"  1>&3 2>&4
+
+if [ $DOVERBOSE == false ]; then
+	exec 1>/dev/null
+	exec 2>/dev/null
+fi
+
+echo "Git: cloning Symphony repository"  1>&3 2>&4
 git clone git://github.com/symphonycms/symphony-2.git symphony-$SYMPHONYVERSION
 
-echo Checkout desired version $SYMPHONYVERSION
+echo "Git: checking out desired Symphony version $SYMPHONYVERSION" 1>&3 2>&4
 cd symphony-$SYMPHONYVERSION
 git checkout $SYMPHONYVERSION
 
-echo Initialize submodules
+echo "Git: initializing submodules" 1>&3 2>&4
 git submodule update --init
 
-echo Clone Workspace
+echo "Git: cloning Workspace" 1>&3 2>&4
 git clone git://github.com/symphonycms/workspace.git
 
-echo Checkout latest version of workspace
+echo "Git: checking out desired workspace version $WORSPACEVERSION" 1>&3 2>&4
 cd workspace
 git checkout $WORSPACEVERSION
 cd ../
 
-echo Remove Git cruft
+echo "Bash: removing Git cruft" 1>&3 2>&4
 for i in `find . -name '.git*'`; do
 	rm -rf $i
 done
@@ -86,11 +101,13 @@ done
 cd ../
 
 if [ $DOZIP == true ]; then
-	echo Zip it
+	echo "Zip: creating archive" 1>&3 2>&4
 	zip -r symphony$SYMPHONYVERSION.zip symphony-$SYMPHONYVERSION
 fi
 
 if [ $DODELETE == true ]; then
-	echo Delete folder
+	echo "Bash: deleting temporary directory" 1>&3 2>&4
 	rm -rf symphony-$SYMPHONYVERSION/
 fi
+
+echo "Finished" 1>&3 2>&4
