@@ -4,6 +4,7 @@ A toolkit for Symphony core development.
 
 ## Features
 
+ - Enables `error_reporting` and `display_errors` when installed
  - `tools/packer/build.sh` a buildscript for generating ready-for-download .zip archives of the default installation
 
 ## Planned features
