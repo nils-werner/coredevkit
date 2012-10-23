@@ -53,14 +53,34 @@ fi
 
 if [ $DOJS == true ]; then
 	echo Merge JS files
-	cat ../../../../symphony/assets/js/* > all.js
+	cat ../../../../symphony/assets/js/jquery.js > all.js
+	cat ../../../../symphony/assets/js/symphony.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.collapsible.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.orderable.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.selectable.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.duplicator.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.tags.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.pickable.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.timeago.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.notify.js >> all.js
+	cat ../../../../symphony/assets/js/symphony.drawer.js >> all.js
+	cat ../../../../symphony/assets/js/admin.js >> all.js
 	cp all.js ../../../../symphony/assets/js/all.js
 fi
 
 
 if [ $DOCSS == true ]; then
 	echo Merge CSS files
-	cat ../../../../symphony/assets/css/* > all.css
+	cat ../../../../symphony/assets/css/symphony.css > all.css
+	cat ../../../../symphony/assets/css/symphony.legacy.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.grids.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.frames.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.forms.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.tables.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.drawers.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.tabs.css >> all.css
+	cat ../../../../symphony/assets/css/symphony.notices.css >> all.css
+	cat ../../../../symphony/assets/css/admin.css >> all.css
 	cp all.css ../../../../symphony/assets/css/all.css
 fi
 
